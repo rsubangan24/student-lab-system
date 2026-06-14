@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import autoprefixer from 'autoprefixer';
+//import autoprefixer from 'autoprefixer';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
 // import tailwindcss from 'tailwindcss';
