@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
-
-class UsageRecord extends Model {
+class UsageRecord extends Model
+{
     protected $fillable = [
         'student_id', 'student_barcode', 'student_name',
         'course', 'institute', 'login_time', 'logout_time',
-        'hours_used', 'remaining_hours', 'date'
+        'hours_used', 'remaining_hours', 'date',
     ];
 
     protected $casts = [
@@ -17,7 +18,8 @@ class UsageRecord extends Model {
         'date' => 'date',
     ];
 
-    public function student() {
+    public function student()
+    {
         return $this->belongsTo(Student::class);
     }
 }

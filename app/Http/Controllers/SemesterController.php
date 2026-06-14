@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Student;
 
-class SemesterController extends Controller {
-
-    public function refresh() {
+class SemesterController extends Controller
+{
+    public function refresh()
+    {
         Student::query()->update([
             'used_hours' => 0,
             'remaining_hours' => 100,

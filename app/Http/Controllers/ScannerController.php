@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\UsageRecord;
+use Illuminate\Http\Request;
 
-
-class ScannerController extends Controller {
-
-    public function scan(Request $request) {
+class ScannerController extends Controller
+{
+    public function scan(Request $request)
+    {
         $request->validate(['barcode' => 'required|string']);
 
         $student = Student::query()->where('barcode', $request->barcode)->first();
 
-        if (!$student) {
+        if (! $student) {
             return response()->json(['action' => 'error', 'message' => 'Student not found'], 404);
         }
 
-        if (!$student->is_logged_in) {
+        if (! $student->is_logged_in) {
             return $this->checkIn($student);
         } else {
             return $this->checkOut($student);
         }
     }
-    
-    private function checkIn(Student $student) {
+
+    private function checkIn(Student $student)
+    {
         if ($student->remaining_hours <= 0) {
             return response()->json(['action' => 'error', 'message' => 'No remaining hours'], 422);
         }
@@ -42,7 +43,8 @@ class ScannerController extends Controller {
         ]);
     }
 
-    private function checkOut(Student $student) {
+    private function checkOut(Student $student)
+    {
         $loginTime = $student->login_time;
         $logoutTime = now();
         $minutesUsed = $logoutTime->diffInMinutes($loginTime);

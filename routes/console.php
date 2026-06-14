@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Student;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
